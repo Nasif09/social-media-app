@@ -31,6 +31,6 @@ app.use("/api/users", userRoute);
 app.use("/api/auth", userAuth);
 app.use("/api/post", postAuth);
 
-app.listen(8000,()=>{
+app.listen(8800,()=>{
     console.log("Backend server ready");
 })
