@@ -93,13 +93,25 @@ router.get("/timeline/:userId", async (req, res) => {
 
 // router.get("/pofile/:username", async(req,res) => {
 //     try{
-//         const user = await User.findIOne({username: req.params.username});
+//         const user = await User.findOne({username: req.params.username});
 //         const posts = await Post.find({userId: user._id});
 //         res.status(200).json(posts);
 //     }catch(err){
 //         res.status(500).json(err);
 //     }
 // })
+router.get("/profile/:username", async(req,res) => {
+    try {
+        const user = await User.findOne({ username: req.params.username });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        const posts = await Post.find({ userId: user._id });
+        res.status(200).json(posts);
+    } catch(err) {
+        res.status(500).json(err);
+    }
+});
 
 
 
